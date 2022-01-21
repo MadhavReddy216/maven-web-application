@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Madhav Reddy- Home Page</title>
-<link href="images/mithunlogo.jpg" rel="icon">
+<title>WIPRO - Home Page</title>
+<link href="images/1.jpg" rel="icon">
 </head>
 </head>
 <body>
