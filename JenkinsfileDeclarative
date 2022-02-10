@@ -32,6 +32,49 @@ options{
 	  sh "mvn clean package"
 	 }
    }
+   stage('ExecuteSonarQubeReport')
+   {
+     steps{
+	  sh "mvn sonar:sonar"
+	 }
+   }
+   
+   stage('UploadArtifactintoNexus')
+   {
+     steps{
+	  sh "mvn deploy"
+	 }
+   }
+   
+  stage('DeployAppIntoTomcat')
+ {
+   steps{
+  sshagent(['2b7b0c6a-5eff-4f4a-82c3-3630f91c70b5']) {
+  sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.1.222.74:/opt/apache-tomcat-9.0.41/webapps/"
+  }
+ }
+ }
+
+ }
+ 
+ post{
+ 
+ 
+ success{
+ mail bcc: 'madhavreddy216@gmail.com', body: '''BuildOver!....
+
+ Regards,
+ Madhava Reddy,
+ 9980923226''', cc: 'madhavreddy216@gmail.com', from: '', replyTo: '', subject: 'BuildOver!!', to: 'madhavreddy216@gmail.com'
+ }
+ 
+ failure{
+ mail bcc: 'madhavreddy216@gmail.com', body: '''BuildOver!....
+
+ Regards,
+ Madhava Reddy,
+ 9980923226''', cc: 'madhavreddy216@gmail.com', from: '', replyTo: '', subject: 'BuildOver!!', to: 'madhavreddy216@gmail.com'
+ }
  
  }
 }
