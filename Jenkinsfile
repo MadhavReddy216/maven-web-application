@@ -4,7 +4,7 @@ agent any
 
 tools
 {
-  maven 'Maven'
+  maven 'maven3.6.3'
 
 }
  stages{
